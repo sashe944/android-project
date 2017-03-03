@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/drop_shadow"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/view" />
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="250dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/tvMoreInfo"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="61dp"
+        android:textSize="30dp"
+        android:layout_alignEnd="@+id/ibClose"
+        android:layout_below="@+id/view" />
+
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_effect"
+        android:id="@+id/ibClose"
+        android:scaleType="fitCenter"
+        android:cropToPadding="false"
+        android:src="@mipmap/ic_exit"
+        android:layout_marginLeft="300dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/ripple_effect"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@mipmap/ic_scale"
+        android:id="@+id/ibCheckScale" />
+
+</RelativeLayout>

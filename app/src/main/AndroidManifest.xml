@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.sashopc.delcandroidtest" >
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".MainApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_test_partial_passed"
+        android:label="Test"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Light" >
+        <activity
+            android:name=".StartTest"
+            android:label="Test"
+            android:screenOrientation="portrait"
+            android:theme="@style/Material.Light.DarkActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Android.QuestionActivity"
+            android:label="Question"
+            android:screenOrientation="portrait"
+            android:theme="@style/Material.Light.DarkActionBar" >
+        </activity>
+                <activity
+            android:name=".Android.EndTest"
+            android:label="@string/title_activity_end_test"
+            android:screenOrientation="portrait"
+            android:theme="@style/Material.Light.DarkActionBar" >
+        </activity>
+    </application>
+
+</manifest>
