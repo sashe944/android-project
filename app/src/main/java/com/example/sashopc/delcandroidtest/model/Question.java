@@ -1,4 +1,4 @@
-package com.example.sashopc.delcandroidtest;
+package com.example.sashopc.delcandroidtest.model;
 
 /**
  * Created by Sasho Pc on 21.12.2016 г..

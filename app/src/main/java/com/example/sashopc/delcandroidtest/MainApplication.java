@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import android.widget.Toast;
 
-import com.example.sashopc.delcandroidtest.Android.EndTest;
+import com.example.sashopc.delcandroidtest.ui.EndTestActivity;
 
 public class MainApplication extends Application {
 
-    public static int TEST_TYPE;
+    public static String TEST_TYPE;
     public static final long MINUTES = 720000;
     public static final long SECONDS = 1000;
     private boolean isDisplayed = false;
@@ -45,7 +45,7 @@ public class MainApplication extends Application {
             public void onFinish() {
                 countdownListener.TimerTick(0);
                 Toast.makeText(MainApplication.this, "Времето изтече", Toast.LENGTH_LONG).show();
-                Intent moveToEndIntent = new Intent(MainApplication.this, EndTest.class);
+                Intent moveToEndIntent = new Intent(MainApplication.this, EndTestActivity.class);
                 moveToEndIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(moveToEndIntent);
             }

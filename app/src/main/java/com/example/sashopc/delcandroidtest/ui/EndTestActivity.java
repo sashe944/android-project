@@ -1,4 +1,4 @@
-package com.example.sashopc.delcandroidtest.Android;
+package com.example.sashopc.delcandroidtest.ui;
 
 
 import android.content.ContentValues;
@@ -15,9 +15,9 @@ import android.widget.Toast;
 
 import com.example.sashopc.delcandroidtest.DatabaseHelper;
 import com.example.sashopc.delcandroidtest.R;
-import com.example.sashopc.delcandroidtest.StartTest;
+import com.example.sashopc.delcandroidtest.ui.StartTest;
 
-public class EndTest extends AppCompatActivity {
+public class EndTestActivity extends AppCompatActivity {
 
     double wholeGrade;
     ImageButton sumAnswers;
@@ -68,7 +68,7 @@ public class EndTest extends AppCompatActivity {
         }else{
             grade = 2;
         }
-       Toast toast = Toast.makeText(EndTest.this, "Оценка от теста: " + String.valueOf(grade), Toast.LENGTH_SHORT);
+       Toast toast = Toast.makeText(EndTestActivity.this, "Оценка от теста: " + String.valueOf(grade), Toast.LENGTH_SHORT);
         View toastView = toast.getView();
 
         toastView.setBackgroundResource(R.drawable.toast_message_style);
@@ -93,7 +93,7 @@ public class EndTest extends AppCompatActivity {
         getCurrentGradeId();
         db = MyDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("FacultyNumber", StartTest.fNumber);
+        //contentValues.put("FacultyNumber", StartTestActivity.fNumber);
         contentValues.put("SpecialityAndYear",StartTest.textSpecialityAndYear);
         contentValues.put("TestName",StartTest.testName);
         contentValues.put("Grade",grade);
@@ -118,7 +118,7 @@ public class EndTest extends AppCompatActivity {
     View.OnClickListener closeApplication = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-           Toast toast = Toast.makeText(EndTest.this, "Android test ще се затвори!", Toast.LENGTH_SHORT);
+           Toast toast = Toast.makeText(EndTestActivity.this, "Android test ще се затвори!", Toast.LENGTH_SHORT);
 
             View toastView = toast.getView();
 

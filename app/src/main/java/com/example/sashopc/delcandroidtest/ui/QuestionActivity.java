@@ -1,7 +1,8 @@
-package com.example.sashopc.delcandroidtest.Android;
+package com.example.sashopc.delcandroidtest.ui;
 
 import android.animation.ObjectAnimator;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,19 +28,19 @@ import android.widget.Toast;
 import com.example.sashopc.delcandroidtest.CountdownListener;
 import com.example.sashopc.delcandroidtest.DatabaseHelper;
 import com.example.sashopc.delcandroidtest.MainApplication;
-import com.example.sashopc.delcandroidtest.Question;
+import com.example.sashopc.delcandroidtest.model.Question;
 import com.example.sashopc.delcandroidtest.R;
-import com.example.sashopc.delcandroidtest.StartTest;
-import com.example.sashopc.delcandroidtest.answerType;
-import com.example.sashopc.delcandroidtest.testType;
+import com.example.sashopc.delcandroidtest.model.AnswerType;
 
 import java.util.concurrent.TimeUnit;
 
 import static android.widget.RadioGroup.*;
 
 public class QuestionActivity extends AppCompatActivity implements CountdownListener {
-    private Button btnFirsQuestion;
 
+    private static final String EXTRA_TEST_TYPE = "testType";
+
+    private Button btnFirsQuestion;
     DatabaseHelper MyDb;
     private  TextView tvQuestionOne;
     private TextView tvQuestionOne1;
@@ -80,6 +81,15 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
     String Answer;
     Question currentQuestion = new Question();
 
+    public static Intent newIntent(Context context, String testType){
+        Intent intent = new Intent(context, QuestionActivity.class);
+        intent.putExtra(EXTRA_TEST_TYPE, testType);
+        return intent;
+    }
+
+    private String getExtraTestType(){
+        return getIntent().getStringExtra(EXTRA_TEST_TYPE);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,23 +157,21 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
     }
 
     private void initLayout() {
-
-
-        switch (MainApplication.TEST_TYPE) {
-            case testType.TEST_ANDROID:
-                getSupportActionBar().setTitle("ANDROID TEST");
-
-                break;
-            case testType.TEST_CSHARP:
-                getSupportActionBar().setTitle("CSHARP TEST");
-
-
-                break;
-            case testType.TEST_JAVA:
-                getSupportActionBar().setTitle("JAVA TEST");
-
-                break;
-        }
+//        switch (MainApplication.TEST_TYPE) {
+//            case TestType.TEST_ANDROID:
+//                getSupportActionBar().setTitle("ANDROID TEST");
+//
+//                break;
+//            case TestType.TEST_CSHARP:
+//                getSupportActionBar().setTitle("CSHARP TEST");
+//
+//
+//                break;
+//            case TestType.TEST_JAVA:
+//                getSupportActionBar().setTitle("JAVA TEST");
+//
+//                break;
+//        }
     }
     @Override
     protected void onResume() {
@@ -204,7 +212,7 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
 
               @Override
               public void onTextChanged(CharSequence s, int start, int before, int count) {
-                  textViewValidateTextArea.setText("Вече е въведен е текс!");
+                  textViewValidateTextArea.setText("Вече е въведен текс!");
                   textViewValidateTextArea.setTextColor(Color.GREEN);
                   btnFirsQuestion.setEnabled(true);
                   btnFirsQuestion.setAlpha(0.5f);
@@ -228,17 +236,17 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
         getQuestionType();
 
         tableName = null;
-        switch (MainApplication.TEST_TYPE){
-            case testType.TEST_ANDROID:
-                tableName = DatabaseHelper.FirstTABLE_NAME;
-                break;
-            case testType.TEST_CSHARP:
-                tableName=DatabaseHelper.SixthTABLE_NAME;
-                break;
-            case testType.TEST_JAVA:
-                tableName = DatabaseHelper.EightTABLE_NAME;
-                break;
-        }
+//        switch (MainApplication.TEST_TYPE){
+//            case TestType.TEST_ANDROID:
+//                tableName = DatabaseHelper.FirstTABLE_NAME;
+//                break;
+//            case TestType.TEST_CSHARP:
+//                tableName=DatabaseHelper.SixthTABLE_NAME;
+//                break;
+//            case TestType.TEST_JAVA:
+//                tableName = DatabaseHelper.EightTABLE_NAME;
+//                break;
+//        }
 
         if(TextUtils.isEmpty(tableName)){
             // TODO show some error
@@ -247,17 +255,17 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
         }
 
         AnswerTableName = null;
-        switch (MainApplication.TEST_TYPE){
-            case testType.TEST_ANDROID:
-                AnswerTableName = DatabaseHelper.SecondTABLE_NAME;
-                break;
-            case testType.TEST_CSHARP:
-                AnswerTableName=DatabaseHelper.SeventhTABLE_NAME;
-                break;
-            case testType.TEST_JAVA:
-                AnswerTableName = DatabaseHelper.NinethTABLE_NAME;
-                break;
-        }
+//        switch (MainApplication.TEST_TYPE){
+//            case TestType.TEST_ANDROID:
+//                AnswerTableName = DatabaseHelper.SecondTABLE_NAME;
+//                break;
+//            case TestType.TEST_CSHARP:
+//                AnswerTableName=DatabaseHelper.SeventhTABLE_NAME;
+//                break;
+//            case TestType.TEST_JAVA:
+//                AnswerTableName = DatabaseHelper.NinethTABLE_NAME;
+//                break;
+//        }
 
         String queryQuestionType ="SELECT * FROM " + tableName + " \n" +
                 "where Type=" +type + " order by random()\n" +
@@ -304,19 +312,19 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
 
     private void showQuestionLayout(Question question) {
         switch (question.getType()) {
-            case answerType.RADIO_BUTTON: {
+            case AnswerType.RADIO_BUTTON: {
                 linearLayoutCheckBoxes.setVisibility(View.GONE);
                 linearLayoutText.setVisibility(View.GONE);
                 rgSingleAnswer.setVisibility(View.VISIBLE);
                 break;
             }
-            case answerType.CHECK_BOXES:{
+            case AnswerType.CHECK_BOXES:{
                 linearLayoutCheckBoxes.setVisibility(View.VISIBLE);
                 linearLayoutText.setVisibility(View.GONE);
                 rgSingleAnswer.setVisibility(View.GONE);
                 break;
             }
-            case answerType.EDIT_TEXT:{
+            case AnswerType.EDIT_TEXT:{
                 linearLayoutCheckBoxes.setVisibility(View.GONE);
                 linearLayoutText.setVisibility(View.VISIBLE);
                 rgSingleAnswer.setVisibility(View.GONE);
@@ -578,7 +586,7 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
 
 
             if(counter==6) {
-            Intent moveToEnd = new Intent(QuestionActivity.this,EndTest.class);
+            Intent moveToEnd = new Intent(QuestionActivity.this,EndTestActivity.class);
             moveToEnd.putExtra("Grade",grade);
             putQuestionTypeThreeInDb();
             startActivity(moveToEnd);
@@ -590,29 +598,29 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
     };
 
     private void putQuestionTypeThreeInDb(){
-        SQLiteDatabase db = MyDb.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-
-        if(currentQuestion.getType() == 3){
-
-            Answer = textArea.getText().toString();
-            contentValues.put("Question",currentQuestion.getQuestionText());
-            contentValues.put("Answer", Answer);
-            contentValues.put("FacultyNumber", StartTest.fNumber);
-            contentValues.put("SpecialityAndYear",StartTest.textSpecialityAndYear);
-            contentValues.put("TestName",StartTest.testName);
-            contentValues.put("Grade",grade);
-            db.insert(DatabaseHelper.FourthTABLE_NAME, null, contentValues);
-        }else {
-
-            contentValues.put("Question","No question was found");
-            contentValues.put("Answer", "No answer was found");
-            contentValues.put("FacultyNumber", StartTest.fNumber);
-            contentValues.put("SpecialityAndYear",StartTest.textSpecialityAndYear);
-            contentValues.put("TestName",StartTest.testName);
-            contentValues.put("Grade",grade);
-            db.insert(DatabaseHelper.FourthTABLE_NAME, null, contentValues);
-        }
+//        SQLiteDatabase db = MyDb.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//
+//        if(currentQuestion.getType() == 3){
+//
+//            Answer = textArea.getText().toString();
+//            contentValues.put("Question",currentQuestion.getQuestionText());
+//            contentValues.put("Answer", Answer);
+//            contentValues.put("FacultyNumber", StartTest.fNumber);
+//            contentValues.put("SpecialityAndYear",StartTest.textSpecialityAndYear);
+//            contentValues.put("TestName",StartTest.testName);
+//            contentValues.put("Grade",grade);
+//            db.insert(DatabaseHelper.FourthTABLE_NAME, null, contentValues);
+//        }else {
+//
+//            contentValues.put("Question","No question was found");
+//            contentValues.put("Answer", "No answer was found");
+//            contentValues.put("FacultyNumber", StartTest.fNumber);
+//            contentValues.put("SpecialityAndYear",StartTest.textSpecialityAndYear);
+//            contentValues.put("TestName",StartTest.testName);
+//            contentValues.put("Grade",grade);
+//            db.insert(DatabaseHelper.FourthTABLE_NAME, null, contentValues);
+//        }
 
     }
 
@@ -623,7 +631,7 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
 
         @Override
         public void TimerTick(long millisUntilFinished) {
-            // TODO: 21.7.2016 г. update texview, ...
+
             tvTimePlaceholder.setText(String.format("%s", String.format("%d : %d",
                     TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
                     TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -

@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Light" >
         <activity
-            android:name=".StartTest"
+            android:name=".ui.StartTest"
             android:label="Test"
             android:screenOrientation="portrait"
             android:theme="@style/Material.Light.DarkActionBar" >
@@ -22,13 +22,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Android.QuestionActivity"
+            android:name=".ui.QuestionActivity"
             android:label="Question"
             android:screenOrientation="portrait"
             android:theme="@style/Material.Light.DarkActionBar" >
         </activity>
                 <activity
-            android:name=".Android.EndTest"
+            android:name=".ui.EndTestActivity"
             android:label="@string/title_activity_end_test"
             android:screenOrientation="portrait"
             android:theme="@style/Material.Light.DarkActionBar" >
