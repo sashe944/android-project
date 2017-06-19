@@ -3,6 +3,7 @@ package com.example.sashopc.delcandroidtest.ui;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -97,13 +98,22 @@ public class StartTestActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 UserResponse userResponse = gson.fromJson(response, UserResponse.class);
-                if (TextUtils.isEmpty(userResponse.name) || userResponse.name.equalsIgnoreCase("null")) {
-                    // TODO show wrong credentials message
+                if (userResponse==null) {
+                    showError("Server error");
+                } else if(TextUtils.isEmpty(userResponse.name) || userResponse.name.equalsIgnoreCase("null")) {
+                    showError("Wrong credentials");
                 } else {
                     getTestTypes();
                 }
             }
         }).execute(etFacNumber.getText().toString());
+    }
+
+    private void showError(String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Error")
+                .setMessage(message)
+                .show();
     }
 
     private void getTestTypes() {
@@ -115,6 +125,8 @@ public class StartTestActivity extends AppCompatActivity {
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 adapter.addAll(testTypes.typeTests);
                 optionSpinner.setAdapter(adapter);
+                optionSpinner.setVisibility(View.VISIBLE);
+                imgStartTest.setVisibility(View.VISIBLE);
                 setOnTestTypeSelectedListener();
             }
         }).execute();

@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.sashopc.delcandroidtest.DatabaseHelper;
 import com.example.sashopc.delcandroidtest.R;
-import com.example.sashopc.delcandroidtest.ui.StartTest;
 
 public class EndTestActivity extends AppCompatActivity {
 
@@ -94,9 +93,9 @@ public class EndTestActivity extends AppCompatActivity {
         db = MyDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         //contentValues.put("FacultyNumber", StartTestActivity.fNumber);
-        contentValues.put("SpecialityAndYear",StartTest.textSpecialityAndYear);
-        contentValues.put("TestName",StartTest.testName);
-        contentValues.put("Grade",grade);
+//        contentValues.put("SpecialityAndYear",StartTest.textSpecialityAndYear);
+//        contentValues.put("TestName",StartTest.testName);
+//        contentValues.put("Grade",grade);
 
         db.update(DatabaseHelper.FourthTABLE_NAME, contentValues, " GradeID = " + gradeId, null);
 

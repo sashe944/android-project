@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Light" >
         <activity
-            android:name=".ui.StartTest"
+            android:name=".ui.StartTestActivity"
             android:label="Test"
             android:screenOrientation="portrait"
             android:theme="@style/Material.Light.DarkActionBar" >

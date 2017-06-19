@@ -12,8 +12,7 @@ import java.net.URL;
 
 public class TypeTestsAsyncTask extends AsyncTask<Void, Void, String> {
 
-    private static final String TYPE_TESTS_URL = ApiConstants.URL + "TypeTests";
-    String content;
+    private static final String TYPE_TESTS_URL = ApiConstants.URL + "TestTypeServlet";
 
     private ApiCallback apiCallback;
 
@@ -41,7 +40,7 @@ public class TypeTestsAsyncTask extends AsyncTask<Void, Void, String> {
                 sb.append(line);
                 line = br.readLine();
             }
-            content = sb.toString();
+            return sb.toString();
 
         }catch (MalformedURLException e) {
             e.printStackTrace();
@@ -54,7 +53,7 @@ public class TypeTestsAsyncTask extends AsyncTask<Void, Void, String> {
 
     @Override
         protected void onPostExecute(String response) {
-            Log.d("asd", "content: " + content);
+            Log.d("asd", "content: " + response);
          apiCallback.onResponse(response);
         }
     }
