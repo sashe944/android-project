@@ -138,7 +138,6 @@ public class StartTestActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
-
                 testType = (String) optionSpinner.getSelectedItem();
             }
 

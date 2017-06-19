@@ -1,11 +1,9 @@
 package com.example.sashopc.delcandroidtest.ui;
 
 import android.animation.ObjectAnimator;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
@@ -28,9 +27,13 @@ import android.widget.Toast;
 import com.example.sashopc.delcandroidtest.CountdownListener;
 import com.example.sashopc.delcandroidtest.DatabaseHelper;
 import com.example.sashopc.delcandroidtest.MainApplication;
+import com.example.sashopc.delcandroidtest.async.ApiCallback;
+import com.example.sashopc.delcandroidtest.async.QAAsyncTask;
 import com.example.sashopc.delcandroidtest.model.Question;
 import com.example.sashopc.delcandroidtest.R;
 import com.example.sashopc.delcandroidtest.model.AnswerType;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
 
@@ -80,6 +83,7 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
     int counter;
     String Answer;
     Question currentQuestion = new Question();
+    Gson gson = new GsonBuilder().create();
 
     public static Intent newIntent(Context context, String testType){
         Intent intent = new Intent(context, QuestionActivity.class);
@@ -143,10 +147,10 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
 
         initLayout();
         initTimer();
-        readQuestionAndAnswerFromDb();
-        getPointsForSingleAnswer();
-        getPointsForMultipleAnswers();
-        validateText();
+        readQuestionAndAnswerFromServer();
+        //getPointsForSingleAnswer();
+//        getPointsForMultipleAnswers();
+//        validateText();
         animateProgressBar();
 
         // getRandomQuestion
@@ -232,173 +236,58 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
             }
         });
     }
-    private void readQuestionAndAnswerFromDb() {
-        getQuestionType();
-
-        tableName = null;
-//        switch (MainApplication.TEST_TYPE){
-//            case TestType.TEST_ANDROID:
-//                tableName = DatabaseHelper.FirstTABLE_NAME;
-//                break;
-//            case TestType.TEST_CSHARP:
-//                tableName=DatabaseHelper.SixthTABLE_NAME;
-//                break;
-//            case TestType.TEST_JAVA:
-//                tableName = DatabaseHelper.EightTABLE_NAME;
-//                break;
-//        }
-
-        if(TextUtils.isEmpty(tableName)){
-            // TODO show some error
-            Toast.makeText(QuestionActivity.this, "EMPTY TABLE!!!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        AnswerTableName = null;
-//        switch (MainApplication.TEST_TYPE){
-//            case TestType.TEST_ANDROID:
-//                AnswerTableName = DatabaseHelper.SecondTABLE_NAME;
-//                break;
-//            case TestType.TEST_CSHARP:
-//                AnswerTableName=DatabaseHelper.SeventhTABLE_NAME;
-//                break;
-//            case TestType.TEST_JAVA:
-//                AnswerTableName = DatabaseHelper.NinethTABLE_NAME;
-//                break;
-//        }
-
-        String queryQuestionType ="SELECT * FROM " + tableName + " \n" +
-                "where Type=" +type + " order by random()\n" +
-                "limit 1";
-        cursorQuestion = MyDb.getReadableDatabase().rawQuery(queryQuestionType, null);
-        cursorQuestion.moveToFirst();
-        questionType = cursorQuestion.getInt(cursorQuestion.getColumnIndex("Type"));
-        question = cursorQuestion.getString(cursorQuestion.getColumnIndex("Question"));
-        questionID = cursorQuestion.getInt(cursorQuestion.getColumnIndex("ID"));
-        cursorQuestion.close();
-
-        currentQuestion.setQuestionText(question);
-        currentQuestion.setType(questionType);
-
-
-        showQuestionLayout(currentQuestion);
-        populateQuestionViews(currentQuestion);
-
-
-        String queryAnswers = "SELECT * FROM " + AnswerTableName +
-                " where QuestionID = " + questionID;
-
-        cursorAnswers = MyDb.getReadableDatabase().rawQuery(queryAnswers, null);
-
-
-        switch (currentQuestion.getType()){
-            case 1: {
-                 populateRadioButtons();
-                break;
+    private void readQuestionAndAnswerFromServer() {
+        new QAAsyncTask(new ApiCallback() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("asd", "response" + response);
+                Question randomQuestion = gson.fromJson(response, Question.class);
+                Log.d("asd", "randomQuestion" + randomQuestion);
+                showQuestionLayout(randomQuestion);
             }
-            case 2:{
-                 populateCheckBoxes();
-                break;
-            }
-            case 3:{
-                 populateEditText();
-                break;
-            }
-        }
-
-
-        cursorAnswers.close();
+        }).execute(getExtraTestType());
     }
 
     private void showQuestionLayout(Question question) {
-        switch (question.getType()) {
+        switch (question.type) {
             case AnswerType.RADIO_BUTTON: {
                 linearLayoutCheckBoxes.setVisibility(View.GONE);
                 linearLayoutText.setVisibility(View.GONE);
                 rgSingleAnswer.setVisibility(View.VISIBLE);
+                populateRadioButtons(question);
+                tvQuestionOne.setText(currentQuestion.questionText);
                 break;
             }
             case AnswerType.CHECK_BOXES:{
                 linearLayoutCheckBoxes.setVisibility(View.VISIBLE);
                 linearLayoutText.setVisibility(View.GONE);
                 rgSingleAnswer.setVisibility(View.GONE);
+                populateCheckBoxes(question);
+                tvQuestionOne1.setText(currentQuestion.questionText);
                 break;
             }
             case AnswerType.EDIT_TEXT:{
                 linearLayoutCheckBoxes.setVisibility(View.GONE);
                 linearLayoutText.setVisibility(View.VISIBLE);
                 rgSingleAnswer.setVisibility(View.GONE);
+                textViewQuestiontTextArea.setText(currentQuestion.questionText);
                 break;
             }
         }
     }
 
-    private void populateQuestionViews(Question currentQuestion){
-        tvQuestionOne.setText(currentQuestion.getQuestionText());
-        tvQuestionOne1.setText(currentQuestion.getQuestionText());
-        textViewQuestiontTextArea.setText(currentQuestion.getQuestionText());
+
+
+    private void populateRadioButtons(Question question){
+            rbOne.setText(question.answers.get(0).answerText);
+            rbTwo.setText(question.answers.get(1).answerText);
+            rbThree.setText(question.answers.get(2).answerText);
     }
 
-    private void populateRadioButtons(){
-
-        if (cursorAnswers.moveToFirst()){
-            answerOne = cursorAnswers.getString(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_ANSWER));
-            assert rbOne != null;
-            rbOne.setText(answerOne);
-            if (cursorAnswers.getInt(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_IS_CORRECT))==1){
-                dbCorrectAnswer = answerOne;
-            }
-
-        }
-        if (cursorAnswers.moveToNext()){
-            answerTwo = cursorAnswers.getString(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_ANSWER));
-            assert rbTwo != null;
-            rbTwo.setText(answerTwo);
-            if (cursorAnswers.getInt(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_IS_CORRECT))==1){
-                dbCorrectAnswer = answerTwo;
-            }
-
-        }
-        if (cursorAnswers.moveToNext()){
-            answerThree = cursorAnswers.getString(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_ANSWER));
-            assert rbThree != null;
-            rbThree.setText(answerThree);
-            if (cursorAnswers.getInt(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_IS_CORRECT))==1){
-                dbCorrectAnswer = answerThree;
-            }
-
-        }
-    }
-
-    private void populateCheckBoxes() {
-
-        if (cursorAnswers.moveToFirst()) {
-            answerOne = cursorAnswers.getString(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_ANSWER));
-            assert chOne != null;
-            chOne.setText(answerOne);
-            if (cursorAnswers.getInt(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_IS_CORRECT)) == 1) {
-                dbCheckBoxAnswer1 = answerOne;
-            }
-
-        }
-        if (cursorAnswers.moveToNext()) {
-            answerTwo = cursorAnswers.getString(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_ANSWER));
-            assert chTwo != null;
-            chTwo.setText(answerTwo);
-            if (cursorAnswers.getInt(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_IS_CORRECT)) == 1) {
-                dbCheckBoxAnswer2 = answerTwo;
-            }
-
-        }
-        if (cursorAnswers.moveToNext()) {
-            answerThree = cursorAnswers.getString(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_ANSWER));
-            assert chThree != null;
-            chThree.setText(answerThree);
-            if (cursorAnswers.getInt(cursorAnswers.getColumnIndex(DatabaseHelper.CLMN_IS_CORRECT)) == 1) {
-                dbCheckBoxAnswer2 = answerThree;
-            }
-        }
-
+    private void populateCheckBoxes(Question question) {
+        chOne.setText(question.answers.get(0).answerText);
+        chTwo.setText(question.answers.get(1).answerText);
+        chThree.setText(question.answers.get(2).answerText);
     }
 
 
@@ -566,7 +455,7 @@ public class QuestionActivity extends AppCompatActivity implements CountdownList
 
             }
 
-            readQuestionAndAnswerFromDb();
+            readQuestionAndAnswerFromServer();
             validateText();
             btnFirsQuestion.setEnabled(false);
             tvCheckBoxValidateText.setText("Все още не е избран отговор!");
