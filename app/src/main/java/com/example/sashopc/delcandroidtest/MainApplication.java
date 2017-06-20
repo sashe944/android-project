@@ -9,12 +9,11 @@ import com.example.sashopc.delcandroidtest.ui.EndTestActivity;
 
 public class MainApplication extends Application {
 
+    public static final int FIVE_MINUTES_IN_MILLIS = 300000;
     public static String TEST_TYPE;
-    public static final long MINUTES = 720000;
-    public static final long SECONDS = 1000;
+    public static final long TEST_DURATION_IN_MILLIS = 720000;
+    public static final long ONE_SECOND = 1000;
     private boolean isDisplayed = false;
-
-    private static long minutesLeft = MINUTES;
 
     private CountDownTimer timeLeft = null;
 
@@ -28,14 +27,12 @@ public class MainApplication extends Application {
     }
 
     public void startTimer(){
-        timeLeft =  new CountDownTimer(minutesLeft, SECONDS) {
+        timeLeft =  new CountDownTimer(TEST_DURATION_IN_MILLIS, ONE_SECOND) {
             @Override
             public void onTick(long millisUntilFinished) {
-                countdownListener.TimerTick(millisUntilFinished);
+                countdownListener.timerTick(millisUntilFinished);
 
-                minutesLeft = millisUntilFinished;
-
-                if (!isDisplayed && millisUntilFinished <= 300000) {
+                if (!isDisplayed && millisUntilFinished <= FIVE_MINUTES_IN_MILLIS) {
                     isDisplayed = true;
                     Toast.makeText(MainApplication.this, "Остава по-малко от 5 минути", Toast.LENGTH_SHORT).show();
                 }
@@ -43,7 +40,7 @@ public class MainApplication extends Application {
 
             @Override
             public void onFinish() {
-                countdownListener.TimerTick(0);
+                countdownListener.timerTick(0);
                 Toast.makeText(MainApplication.this, "Времето изтече", Toast.LENGTH_LONG).show();
                 Intent moveToEndIntent = new Intent(MainApplication.this, EndTestActivity.class);
                 moveToEndIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

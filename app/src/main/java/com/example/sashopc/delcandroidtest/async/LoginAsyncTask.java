@@ -1,4 +1,5 @@
 package com.example.sashopc.delcandroidtest.async;
+
 import android.os.AsyncTask;
 import android.util.Log;
 import java.io.BufferedReader;
@@ -11,7 +12,7 @@ import java.net.URL;
 
 public class LoginAsyncTask extends AsyncTask<String, Void, String> {
 
-    private static final String LOGIN_URL = ApiConstants.URL + "HelloWorld?facNum=";
+    private static final String LOGIN_URL = ApiConstants.URL + "LoginServlet?facNum=";
 
     private ApiCallback apiCallback;
 

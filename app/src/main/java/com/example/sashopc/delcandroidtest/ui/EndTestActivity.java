@@ -49,7 +49,7 @@ public class EndTestActivity extends AppCompatActivity {
 
         MyDb = new DatabaseHelper(this);
         getWholeGrade();
-        putScore();
+        //putScore();
 
     }
     private void getWholeGrade(){
@@ -74,6 +74,7 @@ public class EndTestActivity extends AppCompatActivity {
 
         toast.show();
     }
+
     private void getCurrentGradeId(){
       queryID = "SELECT GradeID FROM Grades_table\n" +
        " order by RANDOM() " +
