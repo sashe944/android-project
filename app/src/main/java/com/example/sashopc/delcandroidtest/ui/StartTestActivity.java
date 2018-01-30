@@ -103,6 +103,7 @@ public class StartTestActivity extends AppCompatActivity {
                 } else if(TextUtils.isEmpty(userResponse.name) || userResponse.name.equalsIgnoreCase("null")) {
                     showError("Wrong credentials");
                 } else {
+                    tvWelcome.setText(userResponse.name + " " + userResponse.family);
                     getTestTypes();
                 }
             }

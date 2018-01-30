@@ -28,93 +28,94 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + FirstTABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Question TEXT, Type INTEGER)");
-     //   db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво е Android ?',1)");//1
-       // db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво е Google Android SDK ?',1)");//2
-      //  db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво значи акронима AAPT ?',1)");//3
-      //  db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Необходими ли са емулаторите в Android Studio ?',2)");//4
-      //  db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво е Android AVD Manager ?',1)");//5
-      //  db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('За какво се използва Intent в Android ?',2)");//6
-     //   db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво е Fragment ?',1)");//7
-     //   db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Всички телефони ли потдържат най-новата версия на Android ?',2)");//8
-     //   db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какъв език се ползва за писането на Android приложения ?',1)");//9
-     //   db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво означава ANR за приложение ?',1)");//10
-    //    db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES(' Въведете курса си',3)");//11
+
+      /*  db.execSQL("create table " + FirstTABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,Question TEXT, Type INTEGER)");
+        db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво е Android ?',1)");//1
+        db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво е Google Android SDK ?',1)");//2
+        db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво значи акронима AAPT ?',1)");//3
+        db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Необходими ли са емулаторите в Android Studio ?',2)");//4
+        db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво е Android AVD Manager ?',1)");//5
+        db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('За какво се използва Intent в Android ?',2)");//6
+        db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво е Fragment ?',1)");//7
+        db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Всички телефони ли потдържат най-новата версия на Android ?',2)");//8
+        db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какъв език се ползва за писането на Android приложения ?',1)");//9
+        db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES('Какво означава ANR за приложение ?',1)");//10
+        db.execSQL("INSERT INTO " + FirstTABLE_NAME + "(Question,Type) VALUES(' Въведете курса си',3)");//11
 
 
 
         db.execSQL("create table " + SixthTABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT,Question TEXT, Type INTEGER)");
-      //  db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Какво е C# ?',1)");//1
-      //  db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Колко вида коментари се използват в C# ?',1)");//2
-      //  db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Избройте типовете коментари:' ,3)");//3
-       // db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Какво е namespace за C#.NET ?',1)");//4
-       // db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Какво е присъщо за C# като език ?',2)");//5
-      //  db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Колко различни категории на наследяване има в C# ?',1)");//6
-      //  db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Кои са основните концепции в ООП ?',1)");//7
-      //  db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Може ли да се използва множествено наследяване в C# ?',2)");//8
-     //   db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Колко вида кеширане в C# съшествуват ?',1)");//9
-     //   db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Какво е капсулация в C# ?',1)");//10
-     //   db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES(' Въведете курса си',3)");//11
+        db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Какво е C# ?',1)");//1
+        db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Колко вида коментари се използват в C# ?',1)");//2
+        db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Избройте типовете коментари:' ,3)");//3
+        db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Какво е namespace за C#.NET ?',1)");//4
+        db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Какво е присъщо за C# като език ?',2)");//5
+        db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Колко различни категории на наследяване има в C# ?',1)");//6
+        db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Кои са основните концепции в ООП ?',1)");//7
+        db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Може ли да се използва множествено наследяване в C# ?',2)");//8
+        db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Колко вида кеширане в C# съшествуват ?',1)");//9
+        db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES('Какво е капсулация в C# ?',1)");//10
+        db.execSQL("INSERT INTO " + SixthTABLE_NAME + "(Question,Type) VALUES(' Въведете курса си',3)");//11
 
         db.execSQL("create table " +SecondTABLE_NAME + "(AnswerID INTEGER PRIMARY KEY AUTOINCREMENT,QuestionID INTEGER, Answer TEXT, IsCorrect INTEGER)");
-       // db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'Отворена операционна система за мобилни устройства',1)");
-       // db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'Модел телефон',0)");
-       // db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'Не знам какво означава',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'Отворена операционна система за мобилни устройства',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'Модел телефон',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'Не знам какво означава',0)");
 
-       // db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(2,'Android SDK са инструменти който разработчиците на приложения за телефони използват',1)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(2,'Тоолбар',0)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(2,'Не знам какво е това',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(2,'Android SDK са инструменти който разработчиците на приложения за телефони използват',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(2,'Тоолбар',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(2,'Не знам какво е това',0)");
 
-     //   db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(3,'Android Asset Packaging Tool',1)");
-     //   db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(3,'Association of Android Providing Technologists',0)");
-     //   db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(3,'Android Advanced Professional Technicians',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(3,'Android Asset Packaging Tool',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(3,'Association of Android Providing Technologists',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(3,'Android Advanced Professional Technicians',0)");
 
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(4,'Да',1)");
-     //   db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(4,'Без емулатор не може',1)");
-     //   db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(4,'He',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(4,'Да',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(4,'Без емулатор не може',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(4,'He',0)");
 
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(5,'В програмата не се намира такова нещо',0)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(5,'Инструмент за създаване на емулаторни устройства',1)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(5,'Това е activity',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(5,'В програмата не се намира такова нещо',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(5,'Инструмент за създаване на емулаторни устройства',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(5,'Това е activity',0)");
 
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(6,'За преминаване от едно в друго Activity ',1)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(6,'За пренасане на параметри',1)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(6,'За стартиране на Activity',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(6,'За преминаване от едно в друго Activity ',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(6,'За пренасане на параметри',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(6,'За стартиране на Activity',0)");
 
-     //   db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(7,'То е част или порция от Activity',1)");
-     //   db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(7,'То е Activity',0)");
-    //    db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(7,'Нямам представа за това',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(7,'То е част или порция от Activity',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(7,'То е Activity',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(7,'Нямам представа за това',0)");
 
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(8,'Зависи колко бързо пристигат ъпдейти за даденото устройство',1)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(8,'Не',0)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(8,'Зависи от операционната система на устройството',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(8,'Зависи колко бързо пристигат ъпдейти за даденото устройство',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(8,'Не',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(8,'Зависи от операционната система на устройството',1)");
 
-     //   db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(9,'Java',1)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(9,'JavaScript',0)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(9,'C#',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(9,'Java',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(9,'JavaScript',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(9,'C#',0)");
 
-     //   db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(10,'Application Not Responding се случва',1)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(10,'Application Not Running се случва', 0)");
-      //  db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(10,'Android Not Responding се случва',0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(10,'Application Not Responding се случва',1)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(10,'Application Not Running се случва', 0)");
+        db.execSQL("INSERT INTO " + SecondTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(10,'Android Not Responding се случва',0)");
 
 
         db.execSQL("create table " + ThirdTABLE_NAME + "(FacultyNumber INTEGER PRIMARY KEY,FirstName TEXT, LastName TEXT)");
         db.execSQL("create table " + EightTABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT,Question TEXT, Type INTEGER)");
 
-     //   db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Кое от изброените не е ключова дума в java',1)");//1
-     //   db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Какъв е размерът на булевата стойност ?',1)");//2
-     //   db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Колко е стойността по подразбиране за byte променлива ?',1)");//3
-     //   db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Кое от изброените е вярно за супер класа ?',2)");//4
-     //   db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Какво е инстанция на променливата ?',1)");//5
-     //   db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Композицията представлява: ',1)");//6
-     //   db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Кое е вярно за final класа ?',2)");//7
-     //   db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Какво е synchronization?',1)");//8
-    //    db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('При какви обстоятелства метода finalize() на обекта се изпълнява от garbage collector ?',1)");//9
-    //    db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Кое от изброените е threat safe?',1)");//10
-    //    db.execSQL("INSERT INTO " + EightTABLE_NAME+ "( Question,Type) VALUES('Въведете курса си',3)");//11
+        db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Кое от изброените не е ключова дума в java',1)");//1
+        db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Какъв е размерът на булевата стойност ?',1)");//2
+        db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Колко е стойността по подразбиране за byte променлива ?',1)");//3
+        db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Кое от изброените е вярно за супер класа ?',2)");//4
+        db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Какво е инстанция на променливата ?',1)");//5
+        db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Композицията представлява: ',1)");//6
+        db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Кое е вярно за final класа ?',2)");//7
+        db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Какво е synchronization?',1)");//8
+        db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('При какви обстоятелства метода finalize() на обекта се изпълнява от garbage collector ?',1)");//9
+        db.execSQL("INSERT INTO " + EightTABLE_NAME + "(Question,Type) VALUES('Кое от изброените е threat safe?',1)");//10
+        db.execSQL("INSERT INTO " + EightTABLE_NAME+ "( Question,Type) VALUES('Въведете курса си',3)");//11
 
 
-    /*   db.execSQL("INSERT INTO " + ThirdTABLE_NAME + "(FacultyNumber,FirstName,LastName) VALUES('1301681001','Симеон','Балабанов')");
+       db.execSQL("INSERT INTO " + ThirdTABLE_NAME + "(FacultyNumber,FirstName,LastName) VALUES('1301681001','Симеон','Балабанов')");
         db.execSQL("INSERT INTO " + ThirdTABLE_NAME + "(FacultyNumber,FirstName,LastName) VALUES('1301681002','Александър','Шаранков')");
         db.execSQL("INSERT INTO " + ThirdTABLE_NAME + "(FacultyNumber,FirstName,LastName) VALUES('1301681003','Дафинка','Герджикова')");
        db.execSQL("INSERT INTO " + ThirdTABLE_NAME + "(FacultyNumber,FirstName,LastName) VALUES('1301681005','Рени','Тодорова')");
@@ -225,13 +226,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + ThirdTABLE_NAME + "(FacultyNumber,FirstName,LastName) VALUES('1301681126','Иван','Господинов')");
         db.execSQL("INSERT INTO " + ThirdTABLE_NAME + "(FacultyNumber,FirstName,LastName) VALUES('1301681114','Михаела','Асенова')");
         db.execSQL("INSERT INTO " + ThirdTABLE_NAME + "(FacultyNumber,FirstName,LastName) VALUES('1301681049','Григорий','Василев')");
-        db.execSQL("INSERT INTO " + ThirdTABLE_NAME + "(FacultyNumber,FirstName,LastName) VALUES('1301681119','Гергана','Нанкинова')"); */
+        db.execSQL("INSERT INTO " + ThirdTABLE_NAME + "(FacultyNumber,FirstName,LastName) VALUES('1301681119','Гергана','Нанкинова')");
 
         db.execSQL("create table " + FourthTABLE_NAME + "(GradeID INTEGER PRIMARY KEY AUTOINCREMENT, FacultyNumber INTEGER,SpecialityAndYear TEXT, Question TEXT, Answer TEXT, TestName TEXT, Grade TEXT, FOREIGN KEY(GradeID)REFERENCES Student_table(FacultyNumber))");
         db.execSQL("create table " + FifthTABLE_NAME + "(QuestionAnswerID INTEGER PRIMARY KEY AUTOINCREMENT,ID INTEGER,AnswerID INTEGER,FOREIGN KEY(ID)REFERENCES Student_table (ID), FOREIGN KEY (AnswerID) REFERENCES Answer_table(AnswerID))");
         db.execSQL("create table " + SeventhTABLE_NAME + "(AnswerID INTEGER PRIMARY KEY AUTOINCREMENT,QuestionID INTEGER, Answer TEXT, IsCorrect INTEGER)");
 
-       /* db.execSQL("INSERT INTO " + SeventhTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'Не знам какво означава', 0)");
+        db.execSQL("INSERT INTO " + SeventhTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'Не знам какво означава', 0)");
         db.execSQL("INSERT INTO " + SeventhTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'Прост,модерен,Обектно-ориентирен език за програмиране', 1)");
         db.execSQL("INSERT INTO " + SeventhTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'Език,който се използва за command prompt',0)");
 
@@ -265,10 +266,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO " + SeventhTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(10,'Метод за работа в C#', 0)");
         db.execSQL("INSERT INTO " + SeventhTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(10,'Един от принципите в ООП', 1)");
-        db.execSQL("INSERT INTO " + SeventhTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(10, 'Не знам какво е това', 0)"); */
+        db.execSQL("INSERT INTO " + SeventhTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(10, 'Не знам какво е това', 0)");
 
         db.execSQL("create table " + NinethTABLE_NAME + "(AnswerID INTEGER PRIMARY KEY AUTOINCREMENT,QuestionID INTEGER, Answer TEXT, IsCorrect INTEGER)");
-     /*   db.execSQL("INSERT INTO " + NinethTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'static',0)");
+        db.execSQL("INSERT INTO " + NinethTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'static',0)");
         db.execSQL("INSERT INTO " + NinethTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'void', 1)");
         db.execSQL("INSERT INTO " + NinethTABLE_NAME + "(QuestionID, Answer,IsCorrect) VALUES(1,'Boolean',0)");
 
